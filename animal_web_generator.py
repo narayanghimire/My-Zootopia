@@ -20,16 +20,16 @@ def main():
 
 
 def format_animal_info(animal):
-    info = ""
+    info = '<li class="cards__item">\n'
     if animal.name:
-        info += f"<li>Name: {animal.name}</li>\n"
+        info += f"Name: {animal.name}<br/>\n"
     if animal.diet:
-        info += f"<li>Diet: {animal.diet}</li>\n"
+        info += f"Diet: {animal.diet}<br/>\n"
     if animal.location:
-        info += f"<li>Location: {animal.location}</li>\n"
+        info += f"Location: {animal.location}<br/>\n"
     if animal.type:
-        info += f"<li>Type: {animal.type}</li>\n"
-    info += "<br>\n"
+        info += f"Type: {animal.type}<br/>\n"
+    info += '</li>\n'
     return info
 
 
