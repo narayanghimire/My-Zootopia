@@ -5,8 +5,10 @@ from service.animal_service import AnimalService
 
 
 def create_animal_service(animal_data) -> AnimalInterface:
+    """Create the instance of animal service and return the interface as instance of AnimalInterface"""
     return AnimalService(animal_data)
 
 
 def create_animal_html_service() -> AnimalHTMLInterface:
+    """create the instance of animal html service and return the interface as instance of AnimalHTMLService"""
     return AnimalHTMLService()

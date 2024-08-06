@@ -5,6 +5,7 @@ from model.animal import AnimalModel
 class AnimalHTMLService(AnimalHTMLInterface):
 
     def format_animal_info(self, animal: AnimalModel) -> str:
+        """Convert animal information to HTML format and return HTML representation of the animal"""
         info = '<li class="cards__item">\n'
         if animal.name:
             info += f'  <div class="card__title">{animal.name}</div>\n'
@@ -20,6 +21,7 @@ class AnimalHTMLService(AnimalHTMLInterface):
         return info
 
     def read_animal_template(self, template_path) -> str:
+        """read animal template and throws error is not found"""
         try:
             with open(template_path, 'r') as template_file:
                 return template_file.read()

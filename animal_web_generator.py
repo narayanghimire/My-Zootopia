@@ -7,6 +7,7 @@ from config.config import create_animal_html_service
 
 
 def main():
+    """Load animal data, convert it to HTML, and save to a file."""
     animal_html_service: AnimalHTMLInterface = create_animal_html_service()
     with open('resource/animals_data.json') as f:
         animals_data = json.load(f)
