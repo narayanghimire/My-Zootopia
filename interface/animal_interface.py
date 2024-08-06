@@ -4,9 +4,9 @@ from model.animal import AnimalModel
 
 class AnimalInterface(ABC):
     @abstractmethod
-    def extract_animal_info(self) -> AnimalModel:
+    def extract_animal_info(self, animal_data: dict) -> AnimalModel:
         pass
 
     @abstractmethod
-    def display_animal_info(self, animal: AnimalModel):
+    def fetch_animal_data(self, animal_name: str) -> str:
         pass

@@ -1,33 +1,28 @@
+from interface.animal_client_interface import AnimalClientInterface
 from interface.animal_interface import AnimalInterface
 from model.animal import AnimalModel
 
 
 class AnimalService(AnimalInterface):
-    def __init__(self, animal_data):
-        """Initialize with animal data """
-        self.animal_data = animal_data
+    def __init__(self, animal_client: AnimalClientInterface):
+        """Initialize with an AnimalClientInterface instance."""
+        self.animal_client = animal_client
 
-    def extract_animal_info(self) -> AnimalModel:
+    def fetch_animal_data(self, animal_name: str) -> str:
+        """Fetch animal data from the API."""
+        if not animal_name:
+            raise ValueError("Animal name is required")
+
+        return  self.animal_client.fetch_animal_data(animal_name)
+
+    def extract_animal_info(self, animal_data: dict) -> AnimalModel:
         """Extracts animal data from json and returns an AnimalModel"""
-        name = self.animal_data.get("name")
-        characteristics = self.animal_data.get("characteristics", {})
+        name = animal_data.get("name")
+        characteristics = animal_data.get("characteristics", {})
         diet = characteristics.get("diet")
-        locations = self.animal_data.get("locations", [])
+        locations = animal_data.get("locations", [])
         location = locations[0] if locations else None
         type_ = characteristics.get("type")
 
         return AnimalModel(name, diet, location, type_)
-
-    def display_animal_info(self, animal: AnimalModel):
-        """display animal info data"""
-        if animal.name:
-            print(f"Name: {animal.name}")
-        if animal.diet:
-            print(f"Diet: {animal.diet}")
-        if animal.location:
-            print(f"Location: {animal.location}")
-        if animal.type:
-            print(f"Type: {animal.type}")
-        print()
-
 
