@@ -30,7 +30,7 @@ def format_animal_info(animals_data, animal_html_service: AnimalHTMLInterface) -
     return animal_info
 
 
-def generate_html(animal_html_service: AnimalHTMLInterface, animal_info: str):
+def generate_html(animal_html_service: AnimalHTMLInterface, animal_info: str, animal_name: str):
     """Generate and save the HTML content."""
     try:
         animal_template_content = animal_html_service.read_animal_template('resource/animals_template.html')
@@ -40,6 +40,8 @@ def generate_html(animal_html_service: AnimalHTMLInterface, animal_info: str):
     except Exception as e:
         print(f"An error occurred while reading the template file: {e}")
         return
+    if not animal_info:
+        animal_info = f'<h2>The animal "{animal_name}" doesn\'t exist.</h2>'
 
     new_animal_html_content = animal_template_content.replace('__REPLACE_ANIMALS_INFO__', animal_info)
     try:
@@ -67,12 +69,8 @@ def main():
         print(e)
         return
 
-    if not animals_data:
-        print("No data found for the given animal.")
-        return
-
     animal_info = format_animal_info(animals_data, animal_html_service)
-    generate_html(animal_html_service, animal_info)
+    generate_html(animal_html_service, animal_info, animal_name)
 
 
 if __name__ == "__main__":
