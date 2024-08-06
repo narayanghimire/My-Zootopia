@@ -12,9 +12,6 @@ class AnimalApiClient(AnimalClientInterface):
         headers = {
             'X-Api-Key': self.API_KEY
         }
-        try:
-            response = requests.get(url, headers=headers)
-            return response.json()
-        except requests.RequestException as e:
-            print(f"Request error: {e}")
-            return []
+        response = requests.get(url, headers=headers)
+        return response.json()
+
