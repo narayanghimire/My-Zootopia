@@ -4,7 +4,7 @@ from model.animal import AnimalModel
 
 class AnimalInterface(ABC):
     @abstractmethod
-    def extract_animal_info(self):
+    def extract_animal_info(self) -> AnimalModel:
         pass
 
     @abstractmethod
